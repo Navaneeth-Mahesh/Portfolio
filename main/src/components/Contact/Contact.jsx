@@ -386,7 +386,7 @@ export default function Contact() {
           </div>
 
           <a
-            href="/public/resume.pdf"
+            href="/resume.pdf"
             style={{
               display: 'inline-block',
               fontFamily: 'var(--font-body)',
