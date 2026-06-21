@@ -176,3 +176,4 @@ section {
 @media (max-width: 768px) {
   .hero-name { font-size: clamp(3rem, 15vw, 8rem) !important; }
 }
+

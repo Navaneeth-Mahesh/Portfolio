@@ -17,18 +17,21 @@ const projects = [
     demo: '#',
     github: '#',
   },
-  {
-    id: '02',
-    title: '-------',
-    subtitle: '-----------',
-    description: '--------------------------------------------------------------',
-    challenge: '-------------------------',
-    stack: ['----------', '----------', '-----', '-----', '-------'],
-    color: '#060606',
-    accent: 'rgba(180,180,180,0.07)',
-    demo: '#',
-    github: '#',
-  },
+{
+  id: '02',
+  title: 'Bowl & Bite',
+  subtitle: 'Full-Stack Food E-Commerce Platform',
+  description:
+    'Bowl & Bite is a modern full-stack food e-commerce application that allows users to browse food products, create accounts, securely log in, manage carts, place orders, and track purchases through an intuitive user interface. The platform includes role-based authentication, protected routes, order management, product catalog management, and a responsive shopping experience designed to simulate a real-world online food ordering system.',
+  challenge:
+    'One of the biggest challenges during development was building and integrating the backend architecture. I had to learn API development, authentication using JWT, database modeling with MongoDB, handling protected routes, connecting frontend and backend services, managing CORS issues during deployment, and deploying the application across multiple cloud platforms. Through solving these challenges, I gained practical experience in full-stack development and significantly improved my backend engineering skills.',
+  stack: [
+    'React','Vite','Tailwind CSS','JavaScript','Node.js','Express.js','MongoDB','Mongoose','JWT','Axios','Render','Vercel'],
+  color: '#060606',
+  accent: 'rgba(180,180,180,0.07)',
+  demo: 'https://bowl-and-bite-ecommerce-store.vercel.app/',
+  github: 'https://github.com/Navaneeth-Mahesh/bowl-and-bite-ecommerce-store',
+},
   {
     id: '03',
     title: '-----',
