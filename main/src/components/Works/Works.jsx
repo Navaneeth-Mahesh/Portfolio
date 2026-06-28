@@ -267,10 +267,9 @@ const ProjectCard = forwardRef(function ProjectCard({ project, index, isActive, 
       <div ref={expandRef} style={{ height: 0, overflow: 'hidden', opacity: 0 }}>
         <div style={{
           display: 'grid',
-          gridTemplateColumns: '1fr 1fr',
-          gap: '4rem',
-          padding: '0 0 3.5rem',
-          paddingLeft: '5rem',
+          gridTemplateColumns: '1fr',
+          gap: '2rem',
+          padding: '0',
         }}>
           {/* Left */}
           <div>

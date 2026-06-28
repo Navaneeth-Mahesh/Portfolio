@@ -144,10 +144,11 @@ export default function About() {
         </div>
 
         {/* Timeline */}
-        <div style={{ position: 'relative', paddingLeft: '2px' }}>
+        <div className="timeline-container" style={{ position: 'relative', paddingLeft: '2px' }}>
           {/* Growing line */}
           <div
             ref={lineRef}
+            className="timeline-line"
             style={{
               position: 'absolute',
               left: '80px',
@@ -164,6 +165,7 @@ export default function About() {
               <div
                 key={year}
                 ref={el => itemsRef.current[i] = el}
+                className="timeline-item"
                 style={{
                   display: 'flex',
                   alignItems: 'center',

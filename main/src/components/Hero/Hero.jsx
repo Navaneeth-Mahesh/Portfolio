@@ -88,6 +88,7 @@ export default function Hero() {
         justifyContent: 'center',
         overflow: 'hidden',
         background: '#000',
+        padding: '0 1rem',
       }}
     >
       {/* Particle field */}
@@ -103,6 +104,7 @@ export default function Hero() {
           inset: 0,
           zIndex: 2,
           opacity: 0,
+          transform: 'scale(1.05)',
         }}
       >
         <div
@@ -163,7 +165,7 @@ export default function Hero() {
           zIndex: 10,
           textAlign: 'center',
           width: '100%',
-          padding: '0 2rem',
+          padding: '0 1rem',
         }}
       >
         {/* Name */}
@@ -179,6 +181,7 @@ export default function Hero() {
             color: 'white',
             opacity: 0,
             marginBottom: '1rem',
+            wordBreak: 'break-word'
           }}
         >
           Navaneeth
@@ -240,6 +243,8 @@ export default function Hero() {
           alignItems: 'center',
           gap: '0.5rem',
         }}
+
+        className="scroll-hint"
       >
         <span style={{
           fontFamily: 'var(--font-body)',

@@ -177,3 +177,125 @@ section {
   .hero-name { font-size: clamp(3rem, 15vw, 8rem) !important; }
 }
 
+/* =========================
+   BASE RESET + GLOBAL FIX
+========================= */
+
+html, body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  scroll-behavior: auto;
+}
+
+/* Default scaling system */
+:root {
+  font-size: 16px;
+}
+
+/* =========================
+   TABLET
+========================= */
+@media (max-width: 1024px) {
+  :root {
+    font-size: 15px;
+  }
+}
+
+/* =========================
+   MOBILE
+========================= */
+@media (max-width: 768px) {
+  :root {
+    font-size: 14px;
+  }
+
+  section {
+    padding: 6rem 1.25rem !important;
+  }
+
+  h1, h2, h3 {
+    letter-spacing: -0.01em !important;
+  }
+
+  * {
+    max-width: 100%;
+  }
+
+  .hero-name {
+    font-size: clamp(2.5rem, 12vw, 6rem) !important;
+  }
+
+  .mobile-menu-btn {
+    display: block !important;
+  }
+
+  nav ul {
+    display: none !important;
+  }
+
+  .scroll-hint {
+    display: none !important;
+  }
+
+  .timeline-container {
+    padding-left: 0 !important;
+  }
+
+  .timeline-line {
+    left: 10px !important;
+    display: none !important;
+  }
+
+  .timeline-item {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 0.8rem !important;
+  }
+}
+
+/* =========================
+   SMALL PHONES
+========================= */
+@media (max-width: 480px) {
+  :root {
+    font-size: 13px;
+  }
+
+  section {
+    padding: 5rem 1rem !important;
+  }
+
+  body {
+    cursor: auto;
+  }
+
+  .cursor-dot,
+  .cursor-ring {
+    display: none;
+  }
+
+  .hero-name {
+    font-size: clamp(2.5rem, 14vw, 5rem) !important;
+  }
+}
+
+/* =========================
+   WORKS GRID (DESKTOP ONLY)
+========================= */
+@media (min-width: 1024px) {
+  .works-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 4rem !important;
+    padding-left: 5rem !important;
+  }
+}
+
+/* =========================
+   EXTRA SAFETY
+========================= */
+
+img, canvas, svg {
+  max-width: 100%;
+  height: auto;
+}
