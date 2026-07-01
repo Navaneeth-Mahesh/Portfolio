@@ -50,7 +50,19 @@ const projects = [
     color: '#050505',
     accent: 'rgba(160,160,160,0.06)',
     demo: 'https://ink-flow-blog-platform-three.vercel.app/',
-    github: '#https://github.com/Navaneeth-Mahesh/InkFlow-BlogPlatform',
+    github: 'https://github.com/Navaneeth-Mahesh/InkFlow-BlogPlatform',
+  },
+  {
+    id: '03',
+    title: 'Bondly',
+    subtitle: 'Modern Social Media - Platform',
+    description: 'Bondly is a fun social media platform where you can connect with friends, share your thoughts, post memorable moments, and start meaningful conversations. Express yourself, discover new people, and build genuine connections—all in one place',
+    challenge: 'The biggest challenge was building a scalable architecture while implementing secure JWT authentication with refresh tokens, Cloudinary image uploads, role-based access control, CRUD operations, and maintaining smooth communication between the Next.js frontend and Express backend.',
+    stack: [ 'React','vite','Js','MongoDB','Cloudinary','JWT','Tailwind CSS','Render','Vercel',],
+    color: '#050505',
+    accent: 'rgba(160,160,160,0.06)',
+    demo: 'https://bondly-one.vercel.app/login',
+    github: 'https://github.com/Navaneeth-Mahesh/Bondly',
   },
 ]
 
