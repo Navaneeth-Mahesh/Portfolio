@@ -1,94 +1,143 @@
-import { useEffect, useRef, useState } from 'react'
-import { gsap } from 'gsap'
+import { useEffect, useRef, useState } from "react";
+import { gsap } from "gsap";
 
 export default function Loader({ onComplete }) {
-  const loaderRef = useRef(null)
-  const counterRef = useRef(null)
-  const lineRef = useRef(null)
-  const textRef = useRef(null)
-  const [count, setCount] = useState(0)
+  const loaderRef = useRef(null);
+  const progressRef = useRef(null);
+  const nameRef = useRef(null);
+  const percentRef = useRef(null);
+
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
-    let frame = 0
-    const total = 100
-    const duration = 2600
+    let frame = 0;
+    const total = 100;
+    const duration = 2400;
+
+    gsap.set(progressRef.current, {
+      scaleX: 0,
+      transformOrigin: "left center",
+    });
 
     const interval = setInterval(() => {
-      frame++
-      const progress = frame / total
-      const eased = 1 - Math.pow(1 - progress, 3)
-      setCount(Math.floor(eased * 100))
+      frame++;
+
+      const progress = frame / total;
+      const eased = 1 - Math.pow(1 - progress, 3);
+
+      const value = Math.floor(eased * 100);
+
+      setCount(value);
+
+      gsap.to(progressRef.current, {
+        scaleX: value / 100,
+        duration: 0.08,
+        ease: "none",
+      });
 
       if (frame >= total) {
-        clearInterval(interval)
-        setCount(100)
+        clearInterval(interval);
+        setCount(100);
 
-        // Exit animation
-        const tl = gsap.timeline({ onComplete })
-        tl.to(lineRef.current, { scaleX: 1, duration: 0.5, ease: 'power2.out' })
-          .to([counterRef.current, textRef.current], {
-            opacity: 0, y: -20, duration: 0.5, stagger: 0.1, ease: 'power2.in'
-          }, '-=0.2')
-          .to(loaderRef.current, {
-            yPercent: -100,
-            duration: 1,
-            ease: 'expo.inOut'
-          }, '-=0.1')
+        const tl = gsap.timeline({
+          delay: 0.2,
+          onComplete,
+        });
+
+        tl.to([nameRef.current, percentRef.current], {
+          y: -10,
+          opacity: 0,
+          duration: 0.45,
+          ease: "power2.inOut",
+        })
+          .to(
+            loaderRef.current,
+            {
+              opacity: 0,
+              scale: 0.98,
+              filter: "blur(20px)",
+              duration: 0.9,
+              ease: "expo.inOut",
+            },
+            "-=0.1"
+          );
       }
-    }, duration / total)
+    }, duration / total);
 
-    return () => clearInterval(interval)
-  }, [onComplete])
+    return () => clearInterval(interval);
+  }, [onComplete]);
 
   return (
-    <div ref={loaderRef} className="loader-wrap">
-      <div style={{ position: 'relative', textAlign: 'center' }}>
-        {/* Counter */}
+    <div
+      ref={loaderRef}
+      style={{
+        position: "fixed",
+        inset: 0,
+        background: "#050505",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        zIndex: 99999,
+      }}
+    >
+      <div
+        style={{
+          width: "260px",
+          display: "flex",
+          flexDirection: "column",
+          gap: "18px",
+        }}
+      >
         <div
-          ref={counterRef}
+          ref={nameRef}
           style={{
-            fontFamily: 'var(--font-hero)',
-            fontSize: 'clamp(5rem, 15vw, 12rem)',
-            fontWeight: 300,
-            color: 'white',
-            lineHeight: 1,
-            letterSpacing: '-0.02em',
+            fontSize: "11px",
+            letterSpacing: "0.45em",
+            textTransform: "uppercase",
+            color: "rgba(255,255,255,.9)",
+            fontWeight: 500,
+            fontFamily: "var(--font-body)",
           }}
         >
-          {String(count).padStart(2, '0')}
+          Navaneeth
         </div>
 
-        {/* Line */}
-        <div style={{ overflow: 'hidden', marginTop: '1rem' }}>
+        <div
+          style={{
+            width: "100%",
+            height: "1px",
+            background: "rgba(255,255,255,.12)",
+            overflow: "hidden",
+          }}
+        >
           <div
-            ref={lineRef}
+            ref={progressRef}
             style={{
-              height: '1px',
-              background: 'rgba(255,255,255,0.3)',
-              transformOrigin: 'left',
-              transform: `scaleX(${count / 100})`,
-              transition: 'transform 0.05s linear',
-              width: '200px',
-              margin: '0 auto',
+              width: "100%",
+              height: "100%",
+              background: "#ffffff",
+              transform: "scaleX(0)",
             }}
           />
         </div>
 
-        {/* Text */}
         <div
-          ref={textRef}
+          ref={percentRef}
           style={{
-            fontFamily: 'var(--font-body)',
-            fontSize: '0.65rem',
-            letterSpacing: '0.3em',
-            color: 'rgba(255,255,255,0.3)',
-            textTransform: 'uppercase',
-            marginTop: '1.5rem',
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            fontSize: "11px",
+            color: "rgba(255,255,255,.45)",
+            fontFamily: "var(--font-body)",
+            letterSpacing: "0.08em",
           }}
         >
-          Loading experience
+          <span>{String(count).padStart(2, "0")}%</span>
+
+          <span>Loading</span>
         </div>
       </div>
     </div>
-  )
+  );
 }

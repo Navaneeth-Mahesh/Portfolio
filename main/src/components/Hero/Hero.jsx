@@ -209,7 +209,7 @@ export default function Hero() {
             marginBottom: '0.5rem',
           }}
         >
-          I don't build websites. I build experiences.
+          I craft digital experiences
         </p>
 
         {/* Title */}

@@ -5,12 +5,26 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 gsap.registerPlugin(ScrollTrigger)
 
 const timeline = [
-  { year: '2007', event: 'A boy was born.' },
-  { year: '2024', event: 'Curiosity found its spark.' },
-  { year: '2026', event: 'Lines of code became words.' },
-  { year: '2028', event: 'Projects became products.' },
-  { year: 'Today', event: 'Building digital experiences.' },
-  { year: 'Tomorrow', event: 'Something bigger.' },
+  {
+    year: '2024',
+    event: 'Started my journey into web development.',
+  },
+  {
+    year: '2025',
+    event: 'Built responsive websites and modern user interfaces.',
+  },
+  {
+    year: '2026',
+    event: 'Expanded into full-stack development and AI applications.',
+  },
+  {
+    year: 'Today',
+    event: 'Creating fast, scalable, and thoughtful digital products.',
+  },
+  {
+    year: 'Next',
+    event: 'Learning, building, and pushing every project further.',
+  },
 ]
 
 export default function About() {
