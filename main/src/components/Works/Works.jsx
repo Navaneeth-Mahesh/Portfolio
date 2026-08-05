@@ -3,7 +3,7 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 gsap.registerPlugin(ScrollTrigger)
-
+import imgNeuralos  from '../../assets/works/neuralos.png'
 import imgBowlBite from '../../assets/works/02-bowl-and-bite.png'
 import imgInkFlow from '../../assets/works/03-inkflow.jpg'
 import imgBondly from '../../assets/works/04-bondly.jpg'
@@ -30,11 +30,11 @@ const projects = [
       'A full-stack AI platform that orchestrates intelligent agents across workflows, translating natural language into system commands. Built to replace traditional UX paradigms.',
     challenge:
       'Training a multi-agent system to understand context across thousands of user sessions without hallucination.',
-    stack: ['In progress'],
-    image: null,
+    stack: ['React, Node, Express, js'],
+    image: imgNeuralos,
     demo: null,
-    github: null,
-    status: 'In progress',
+    github: 'https://github.com/Navaneeth-Mahesh/NeuralOS-AI',
+    status: 'Frontend Developed, Backend still in progress..',
   },
   {
     id: '02',
