@@ -8,6 +8,7 @@ import imgBowlBite from '../../assets/works/02-bowl-and-bite.png'
 import imgInkFlow from '../../assets/works/03-inkflow.jpg'
 import imgBondly from '../../assets/works/04-bondly.jpg'
 import imgSpiceBox from '../../assets/works/05-SpiceBox.png'
+import imgAIAgent from '../../assets/works/06-AI-Agent.png'
 
 /* ---------------------------------------------------------------- */
 /* Data                                                               */
@@ -91,6 +92,18 @@ const projects = [
     image: imgSpiceBox,
     demo: 'https://code-alpha-spice-box.vercel.app/',
     github: 'https://github.com/Navaneeth-Mahesh/SpiceBox',
+  },
+  {
+    id: '06',
+    title: 'Local-AI-Agent',
+    category: 'AI Operating System',
+    subtitle: 'Private AI. Your Machine. Your Rules.',
+    description:'A production-grade self-hosted AI agent that runs locally on your own machine. It combines conversational AI, long-term memory, semantic search, local file indexing, browser access, coding assistance, and permission-based system tools — giving users a private, extensible AI assistant without relying on a centralized cloud platform.',
+    challenge:'The biggest challenge was designing the agent as a real software system rather than a simple chatbot: building JWT authentication and user isolation, integrating LLM providers, managing conversations and memory, designing a modular Tool Registry, implementing RAG and semantic search, safely exposing local system capabilities through permissions, and maintaining a clean architecture that can scale with new tools and AI providers.',
+    stack: ['React','TypeScript','Python','FastAPI','Gemini API','Ollama','RAG',],
+    image: imgAIAgent,
+    demo: 'No-Demo',
+    github: 'https://github.com/Navaneeth-Mahesh/Local-AI-Agent',
   },
 ]
 
