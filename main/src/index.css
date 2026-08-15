@@ -8,8 +8,12 @@
   --silver: #c0c0c0;
   --dim: #888888;
   --font-hero: 'Cormorant Garamond', serif;
+  --font-dorsa: 'Dorsa', sans-serif;
   --font-accent: 'Bodoni Moda', serif;
+  --font-script: 'Great Vibes', cursive;
   --font-body: 'Inter', sans-serif;
+  --accent-red: #aa1111;
+  --dark-red: #600808;
 }
 
 *, *::before, *::after {

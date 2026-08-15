@@ -2,35 +2,52 @@ import { useEffect, useRef, useState } from 'react'
 import { gsap } from 'gsap'
 
 const navLinks = [
-  { label: 'Home', href: '#home' },
-  { label: 'About', href: '#about' },
-  { label: 'Works', href: '#works' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'H', full: 'Home', href: '#home' },
+  { label: 'A', full: 'About', href: '#about' },
+  { label: 'W', full: 'Works', href: '#works' },
+  { label: 'C', full: 'Contact', href: '#contact' },
 ]
 
 export default function Navbar() {
   const navRef = useRef(null)
   const [scrolled, setScrolled] = useState(false)
-  const [menuOpen, setMenuOpen] = useState(false)
+  const [activeSection, setActiveSection] = useState('H')
 
   useEffect(() => {
     gsap.fromTo(
       navRef.current,
-      { y: -30, opacity: 0 },
-      { y: 0, opacity: 1, duration: 1.2, ease: 'power3.out', delay: 3.5 }
+      { y: -20, opacity: 0 },
+      { y: 0, opacity: 1, duration: 1, ease: 'power3.out', delay: 0.2 }
     )
 
-    const handleScroll = () => setScrolled(window.scrollY > 80)
-    window.addEventListener('scroll', handleScroll)
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50)
 
+      // Section highlight detector
+      const sections = ['#home', '#about', '#works', '#contact']
+      const scrollPos = window.scrollY + 200
+
+      sections.forEach((sec, idx) => {
+        const el = document.querySelector(sec)
+        if (el) {
+          const top = el.offsetTop
+          const height = el.offsetHeight
+          if (scrollPos >= top && scrollPos < top + height) {
+            setActiveSection(navLinks[idx].label)
+          }
+        }
+      })
+    }
+
+    window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  const handleNav = (e, href) => {
+  const handleNav = (e, href, label) => {
     e.preventDefault()
+    setActiveSection(label)
     const el = document.querySelector(href)
     if (el) el.scrollIntoView({ behavior: 'smooth' })
-    setMenuOpen(false)
   }
 
   return (
@@ -42,115 +59,84 @@ export default function Navbar() {
         left: 0,
         right: 0,
         zIndex: 1000,
-        padding: '1rem clamp(1rem, 4vw, 3rem)',
+        padding: '2rem clamp(1.5rem, 5vw, 4rem)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-        transition: 'background 0.5s ease, padding 0.3s ease',
+        transition: 'background 0.4s ease, padding 0.3s ease',
         background: scrolled ? 'rgba(0,0,0,0.85)' : 'transparent',
-        backdropFilter: scrolled ? 'blur(20px)' : 'none',
-        borderBottom: scrolled ? '1px solid rgba(255,255,255,0.05)' : 'none',
+        backdropFilter: scrolled ? 'blur(16px)' : 'none',
+        pointerEvents: 'auto',
       }}
     >
-      {/* Logo */}
+      {/* Brand logo N. */}
       <a
         href="#home"
-        onClick={(e) => handleNav(e, '#home')}
+        onClick={(e) => handleNav(e, '#home', 'H')}
         style={{
-          fontFamily: 'var(--font-accent)',
+          fontFamily: 'var(--font-accent), serif',
           fontSize: '1.1rem',
           fontWeight: 400,
           letterSpacing: '0.15em',
-          color: 'white',
+          color: '#ffffff',
           textDecoration: 'none',
+          opacity: scrolled ? 1 : 0.85,
+          transition: 'opacity 0.3s ease',
         }}
       >
         N.
       </a>
 
-      {/* Desktop Links */}
+      {/* Desktop Links: H  A  W  C */}
       <ul
         style={{
           display: 'flex',
-          gap: 'clamp(1rem, 3vw, 2.5rem)',
+          gap: '2.5rem',
           listStyle: 'none',
-          flexWrap: 'wrap',
-          justifyContent: 'flex-end',
+          alignItems: 'center',
+          margin: 0,
+          padding: 0,
         }}
       >
-        {navLinks.map(({ label, href }) => (
-          <li key={label}>
-            <a
-              href={href}
-              onClick={(e) => handleNav(e, href)}
-              style={{
-                fontFamily: 'var(--font-body)',
-                fontSize: '0.65rem',
-                letterSpacing: '0.2em',
-                textTransform: 'uppercase',
-                color: 'rgba(255,255,255,0.5)',
-                textDecoration: 'none',
-                transition: 'color 0.3s',
-              }}
-              onMouseEnter={(e) => (e.target.style.color = 'white')}
-              onMouseLeave={(e) =>
-                (e.target.style.color = 'rgba(255,255,255,0.5)')
-              }
-            >
-              {label}
-            </a>
-          </li>
-        ))}
+        {navLinks.map(({ label, full, href }) => {
+          const isActive = activeSection === label
+          return (
+            <li key={label}>
+              <a
+                href={href}
+                onClick={(e) => handleNav(e, href, label)}
+                title={full}
+                style={{
+                  fontFamily: 'var(--font-accent), var(--font-hero), serif',
+                  fontSize: '1.25rem',
+                  fontWeight: 600,
+                  letterSpacing: '0.08em',
+                  color: isActive ? '#ffffff' : 'rgba(255,255,255,0.7)',
+                  textDecoration: 'none',
+                  position: 'relative',
+                  paddingBottom: '0.25rem',
+                  transition: 'color 0.3s ease',
+                }}
+              >
+                {label}
+                <span
+                  style={{
+                    position: 'absolute',
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    height: '2px',
+                    background: '#a81313',
+                    transform: isActive ? 'scaleX(1)' : 'scaleX(0)',
+                    transition: 'transform 0.3s ease',
+                    transformOrigin: 'center',
+                  }}
+                />
+              </a>
+            </li>
+          )
+        })}
       </ul>
-
-      {/* Mobile Button */}
-      <button
-        onClick={() => setMenuOpen(!menuOpen)}
-        style={{
-          display: 'none',
-          background: 'none',
-          border: 'none',
-          color: 'white',
-          fontSize: '1.5rem',
-        }}
-        className="mobile-menu-btn"
-      >
-        ☰
-      </button>
-
-      {/* Mobile Menu */}
-      {menuOpen && (
-        <div
-          style={{
-            position: 'absolute',
-            top: '100%',
-            left: 0,
-            right: 0,
-            background: 'rgba(0,0,0,0.95)',
-            padding: '1rem',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '1rem',
-          }}
-        >
-          {navLinks.map(({ label, href }) => (
-            <a
-              key={label}
-              href={href}
-              onClick={(e) => handleNav(e, href)}
-              style={{
-                color: 'white',
-                textDecoration: 'none',
-                fontSize: '0.9rem',
-                letterSpacing: '0.1em',
-                textTransform: 'uppercase',
-              }}
-            >
-              {label}
-            </a>
-          ))}
-        </div>
-      )}
     </nav>
   )
 }
