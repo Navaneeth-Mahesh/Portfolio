@@ -19,6 +19,7 @@ export default function Hero() {
   const scrollHintRef = useRef(null)
 
   const [processedPic, setProcessedPic] = useState(rawPic)
+  const [typedGreeting, setTypedGreeting] = useState('')
 
   // Canvas background removal for pic.png (removes pure white background)
   useEffect(() => {
@@ -52,6 +53,21 @@ export default function Hero() {
     }
   }, [])
 
+  // Typing animation for "Hello, I'm"
+  useEffect(() => {
+    const text = "Hello, I'm"
+    let index = 0
+    setTypedGreeting('')
+    const timer = setInterval(() => {
+      index++
+      setTypedGreeting(text.slice(0, index))
+      if (index >= text.length) {
+        clearInterval(timer)
+      }
+    }, 110)
+    return () => clearInterval(timer)
+  }, [])
+
   useEffect(() => {
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
@@ -60,7 +76,7 @@ export default function Hero() {
     tl.fromTo(
       bgWordRef.current,
       { opacity: 0, scale: 1.08, letterSpacing: '0.1em' },
-      { opacity: 1, scale: 1, letterSpacing: '0.02em', duration: 1.8, ease: 'power3.out' }
+      { opacity: 0.4, scale: 1, letterSpacing: '0.01em', duration: 1.8, ease: 'power3.out' }
     )
       .fromTo(
         portraitRef.current,
@@ -88,14 +104,14 @@ export default function Hero() {
       )
       .fromTo(
         descRef.current,
-        { opacity: 0, y: 16 },
-        { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out' },
+        { opacity: 0, y: 40 },
+        { opacity: 1, y: 0, duration: 1.1, ease: 'power3.out' },
         '-=0.4'
       )
       .fromTo(
         resumeRef.current,
-        { opacity: 0, y: 16 },
-        { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out' },
+        { opacity: 0, x: 20 },
+        { opacity: 1, x: 0, duration: 0.8, ease: 'power2.out' },
         '-=0.35'
       )
       .fromTo(
@@ -141,31 +157,31 @@ export default function Hero() {
         <ParticleField />
       </div>
 
-      {/* Giant Background Text: PORTFOLIO centered with exact user linear gradient stops */}
+      {/* Giant Background Text: PORTFOLIO centered horizontally and vertically with 40% opacity & linear gradient as per Image 3 */}
       <div
         ref={bgWordRef}
         aria-hidden="true"
         style={{
           position: 'absolute',
           top: '50%',
-          left: '0%',
+          left: '50%',
           transform: 'translate(-50%, -50%)',
           zIndex: 2,
           fontFamily: "var(--font-dorsa), 'Dorsa', sans-serif",
-          fontWeight: 400,
-          fontSize: 'clamp(13rem, 34vw, 36rem)',
-          lineHeight: 0.68,
-          letterSpacing: '0.01em',
-          background: 'linear-gradient(180deg, #ff0000 0%, #d90000 22%, #a00000 45%, #650000 65%, #280000 82%, #000000 100%)',
+          fontWeight: 550,
+          fontSize: 'clamp(13rem, 30vw, 36rem)',
+          lineHeight: 0.8,
+          letterSpacing: '0.06em',
+          background: 'linear-gradient(180deg, #FF0000 0%, #AA0000 50%, #990000 60%, #000000 100%)',
           WebkitBackgroundClip: 'text',
           backgroundClip: 'text',
           color: 'transparent',
-          WebkitTextStroke: '1px rgba(255, 0, 0, 0.35)',
+          opacity: 0.3,
           userSelect: 'none',
           pointerEvents: 'none',
           whiteSpace: 'nowrap',
           textAlign: 'center',
-          width: '120vw',
+          width: '100%',
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
@@ -180,13 +196,13 @@ export default function Hero() {
         className="hero-portrait"
         style={{
           position: 'absolute',
-          left: '48%',
+          left: '50%',
           bottom: 0,
           transform: 'translateX(-50%)',
           transformOrigin: 'bottom center',
           zIndex: 5,
-          height: '120vh',
-          width: 'auto',
+          height: '125vh',
+          width: '200rem',
           display: 'flex',
           alignItems: 'flex-end',
           justifyContent: 'center',
@@ -199,14 +215,13 @@ export default function Hero() {
           style={{
             height: '100%',
             width: 'auto',
-            maxHeight: 'none',
+            maxHeight: '100%',
             objectFit: 'contain',
-            transform:  'scale(0.9)',
-            transformOrigin: 'center',
-
-            filter: 'grayscale(100%) contrast(1.0) brightness(0.99)',
-            maskImage: 'linear-gradient(to bottom, black 90%, transparent 100%)',
-            WebkitMaskImage: 'linear-gradient(to bottom, black 90%, transparent 100%)',
+            transform: 'scale(0.92)',
+            transformOrigin: 'center bottom',
+            filter: 'grayscale(100%) contrast(1) brightness(0.98)',
+            maskImage: 'linear-gradient(to bottom, black 88%, transparent 100%)',
+            WebkitMaskImage: 'linear-gradient(to bottom, black 88%, transparent 100%)',
           }}
         />
       </div>
@@ -220,28 +235,31 @@ export default function Hero() {
           maxWidth: '480px',
           paddingLeft: 'clamp(2rem, 6vw, 6rem)',
           paddingRight: '1rem',
-          paddingTop: '3rem',
+          paddingTop: '2rem',
         }}
       >
-        {/* Hello, I'm - Cursive Script Font */}
+        {/* Hello, I'm - Ephesis Font with Typing Animation */}
         <p
           ref={greetRef}
           style={{
-            fontFamily: 'var(--font-script), cursive',
-            fontSize: 'clamp(2.4rem, 4vw, 3.4rem)',
+            fontFamily: "var(--font-script), 'Ephesis', cursive",
+            fontSize: 'clamp(2.5rem, 4.5vw, 3.8rem)',
             fontWeight: 400,
             color: '#ffffff',
             marginBottom: '0.1rem',
             lineHeight: 1.1,
             letterSpacing: '0.02em',
+            display: 'flex',
+            alignItems: 'center',
           }}
         >
-          Hello, I'm
+          <span>{typedGreeting}</span>
+          <span className="typing-cursor" style={{ marginLeft: '4px', color: 'rgba(255,255,255,0.7)', fontWeight: 300 }}>|</span>
         </p>
 
-        {/* NAVANEEETH - LED Dot Matrix Styled Name */}
-        <div ref={nameRef} style={{ marginBottom: '1.2rem', display: 'block' }}>
-          <DottedText text="NAVANEETH" dotSize={4.5} gap={3.5} letterGap={14} />
+        {/* NAVANEETH - Dotted LED Font with Flickering Animation */}
+        <div ref={nameRef} className="hero-name-container" style={{ marginBottom: '1.2rem', display: 'block' }}>
+          <DottedText text="NAVANEETH" dotSize={4.5} gap={3.5} letterGap={14} flicker={true} />
         </div>
 
         {/* Role Subtitle - Bold Crimson Red */}
@@ -261,15 +279,16 @@ export default function Hero() {
           FULL STACK DEVELOPER &amp; AI ENGINEER
         </p>
 
-        {/* Bio Paragraph */}
+        {/* Bio Paragraph with SlideUp Animation */}
         <p
           ref={descRef}
+          className="hero-bio-text"
           style={{
             fontFamily: 'var(--font-body), sans-serif',
             fontSize: 'clamp(0.82rem, 1vw, 0.94rem)',
             lineHeight: 1.7,
             color: 'rgba(230,230,230,0.85)',
-            marginBottom: '2.5rem',
+            marginBottom: '2rem',
             maxWidth: '410px',
             fontWeight: 300,
           }}
@@ -279,36 +298,43 @@ export default function Hero() {
           emerging technologies. Always learning, building, and turning ideas
           into real-world projects.
         </p>
-
-        {/* RESUME Button */}
-        <div>
-          <a
-            ref={resumeRef}
-            href="/resume.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hero-resume-btn"
-            style={{
-              display: 'inline-block',
-              fontFamily: 'var(--font-accent), var(--font-hero), serif',
-              fontSize: '1.1rem',
-              fontWeight: 500,
-              letterSpacing: '0.22em',
-              textTransform: 'uppercase',
-              color: '#ffffff',
-              textDecoration: 'none',
-              position: 'relative',
-              padding: '0.4rem 0',
-              borderBottom: '1px solid rgba(255,255,255,0.45)',
-              transition: 'color 0.3s ease, border-color 0.3s ease',
-            }}
-          >
-            RESUME
-          </a>
-        </div>
       </div>
 
-      {/* Bottom Center: scroll down (Script Font) */}
+      {/* Right Side: RESUME placed as per Image 2 */}
+      <div
+        className="hero-resume-container"
+        style={{
+          position: 'absolute',
+          right: 'clamp(2.5rem, 6vw, 6rem)',
+          bottom: '24%',
+          zIndex: 10,
+        }}
+      >
+        <a
+          ref={resumeRef}
+          href="/resume.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hero-resume-btn"
+          style={{
+            display: 'inline-block',
+            fontFamily: 'var(--font-accent), var(--font-hero), serif',
+            fontSize: 'clamp(1.1rem, 1.6vw, 1.4rem)',
+            fontWeight: 400,
+            letterSpacing: '0.22em',
+            textTransform: 'uppercase',
+            color: '#ffffff',
+            textDecoration: 'none',
+            position: 'relative',
+            padding: '0.4rem 0',
+            transition: 'color 0.3s ease, opacity 0.3s ease',
+          }}
+        >
+          RESUME
+        </a>
+      </div>
+
+      {/* Bottom Center: scroll down (Ephesis Script Font) */}
       <div
         ref={scrollHintRef}
         style={{
@@ -325,8 +351,8 @@ export default function Hero() {
       >
         <span
           style={{
-            fontFamily: 'var(--font-script), cursive',
-            fontSize: '1.7rem',
+            fontFamily: "var(--font-script), 'Ephesis', cursive",
+            fontSize: '1.8rem',
             color: 'rgba(255,255,255,0.7)',
             animation: 'floatBounce 2.4s ease-in-out infinite',
           }}
@@ -335,15 +361,15 @@ export default function Hero() {
         </span>
       </div>
 
-      {/* Right Edge Border Line */}
+      {/* Far Right Edge Border Line */}
       <div
         style={{
           position: 'absolute',
           right: '2rem',
           top: '18%',
           bottom: '12%',
-          width: '1px',
-          background: 'linear-gradient(to bottom, transparent, rgba(255,255,255,0.3), transparent)',
+          width: '1.5px',
+          background: 'linear-gradient(to bottom, transparent 0%, rgba(255,255,255,0.4) 20%, rgba(255,255,255,0.4) 80%, transparent 100%)',
           zIndex: 20,
         }}
       />
@@ -351,7 +377,15 @@ export default function Hero() {
       <style>{`
         .hero-resume-btn:hover {
           color: #a81313 !important;
-          border-color: #a81313 !important;
+        }
+
+        .typing-cursor {
+          animation: blinkCursor 0.8s infinite;
+        }
+
+        @keyframes blinkCursor {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0; }
         }
 
         @keyframes floatBounce {
@@ -381,6 +415,13 @@ export default function Hero() {
           .hero-content p {
             margin-left: auto;
             margin-right: auto;
+          }
+          .hero-resume-container {
+            position: relative !important;
+            right: auto !important;
+            bottom: auto !important;
+            margin-top: 1.5rem;
+            text-align: center;
           }
         }
       `}</style>
