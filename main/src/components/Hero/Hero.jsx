@@ -157,9 +157,10 @@ export default function Hero() {
         <ParticleField />
       </div>
 
-      {/* Giant Background Text: PORTFOLIO centered horizontally and vertically with 40% opacity & linear gradient as per Image 3 */}
+      {/* Giant Background Text: PORTFOLIO */}
       <div
         ref={bgWordRef}
+        className="hero-bg-word"
         aria-hidden="true"
         style={{
           position: 'absolute',
@@ -190,7 +191,7 @@ export default function Hero() {
         PORTFOLIO
       </div>
 
-      {/* Center Portrait Cutout (pic.png centered horizontally) */}
+      {/* Center Portrait Cutout */}
       <div
         ref={portraitRef}
         className="hero-portrait"
@@ -241,6 +242,7 @@ export default function Hero() {
         {/* Hello, I'm - Ephesis Font with Typing Animation */}
         <p
           ref={greetRef}
+          className="hero-greet-text"
           style={{
             fontFamily: "var(--font-script), 'Ephesis', cursive",
             fontSize: 'clamp(2.5rem, 4.5vw, 3.8rem)',
@@ -265,6 +267,7 @@ export default function Hero() {
         {/* Role Subtitle - Bold Crimson Red */}
         <p
           ref={roleRef}
+          className="hero-role-text"
           style={{
             fontFamily: 'var(--font-body), sans-serif',
             fontSize: 'clamp(0.8rem, 1.1vw, 0.95rem)',
@@ -300,7 +303,7 @@ export default function Hero() {
         </p>
       </div>
 
-      {/* Right Side: RESUME placed as per Image 2 */}
+      {/* Right Side: RESUME */}
       <div
         className="hero-resume-container"
         style={{
@@ -334,9 +337,10 @@ export default function Hero() {
         </a>
       </div>
 
-      {/* Bottom Center: scroll down (Ephesis Script Font) */}
+      {/* Bottom Center: scroll down */}
       <div
         ref={scrollHintRef}
+        className="hero-scroll-hint"
         style={{
           position: 'absolute',
           bottom: '2rem',
@@ -363,6 +367,7 @@ export default function Hero() {
 
       {/* Far Right Edge Border Line */}
       <div
+        className="hero-right-line"
         style={{
           position: 'absolute',
           right: '2rem',
@@ -395,33 +400,99 @@ export default function Hero() {
 
         @media (max-width: 900px) {
           #home {
-            flex-direction: column;
-            justify-content: flex-start;
-            padding-top: 6.5rem;
+            min-height: 100vh !important;
+            height: 100vh !important;
+            height: 100dvh !important;
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: flex-end !important;
+            padding-top: 0 !important;
+            padding-bottom: 0 !important;
+          }
+          .hero-bg-word {
+            font-size: clamp(6.8rem, 28vw, 11.5rem) !important;
+            top: 28% !important;
+            left: 50% !important;
+            transform: translate(-50%, -50%) !important;
+            opacity: 0.75 !important;
+            background: linear-gradient(180deg, #ff2222 0%, #cc1111 50%, #990000 85%, #440000 100%) !important;
+            -webkit-background-clip: text !important;
+            background-clip: text !important;
+            letter-spacing: 0.05em !important;
           }
           .hero-portrait {
-            position: relative !important;
-            left: auto !important;
-            transform: none !important;
-            height: 42vh !important;
-            margin: 0 auto;
+            position: absolute !important;
+            left: 50% !important;
+            transform: translateX(-50%) !important;
+            top: 8% !important;
+            bottom: auto !important;
+            height: 56vh !important;
+            width: 100% !important;
+            max-width: 480px !important;
+            margin: 0 !important;
+            z-index: 5 !important;
+          }
+          .hero-portrait img {
+            mask-image: linear-gradient(to bottom, black 65%, transparent 100%) !important;
+            -webkit-mask-image: linear-gradient(to bottom, black 65%, transparent 100%) !important;
+            transform: scale(1) !important;
           }
           .hero-content {
-            padding-left: 1.5rem !important;
-            padding-right: 1.5rem !important;
-            text-align: center;
+            position: absolute !important;
+            left: 0 !important;
+            bottom: 4rem !important;
+            top: auto !important;
+            padding-left: 1.25rem !important;
+            padding-right: 0.5rem !important;
+            padding-top: 0 !important;
+            text-align: left !important;
+            max-width: 72% !important;
+            z-index: 10 !important;
+          }
+          .hero-greet-text {
+            font-size: clamp(1.8rem, 5.5vw, 2.5rem) !important;
+            margin-bottom: 0.1rem !important;
+          }
+          .hero-name-container {
+            margin-bottom: 0.6rem !important;
             max-width: 100% !important;
           }
-          .hero-content p {
-            margin-left: auto;
-            margin-right: auto;
+          .hero-role-text {
+            font-size: clamp(0.68rem, 2.4vw, 0.8rem) !important;
+            margin-bottom: 0.6rem !important;
+            line-height: 1.3 !important;
+          }
+          .hero-bio-text {
+            font-size: clamp(0.65rem, 2.2vw, 0.76rem) !important;
+            line-height: 1.45 !important;
+            margin-bottom: 0 !important;
+            max-width: 100% !important;
+            color: rgba(230,230,230,0.85) !important;
           }
           .hero-resume-container {
-            position: relative !important;
-            right: auto !important;
-            bottom: auto !important;
-            margin-top: 1.5rem;
-            text-align: center;
+            position: absolute !important;
+            right: 1.2rem !important;
+            bottom: 10rem !important;
+            top: auto !important;
+            margin: 0 !important;
+            text-align: right !important;
+            z-index: 15 !important;
+          }
+          .hero-resume-btn {
+            font-size: clamp(0.95rem, 3.2vw, 1.2rem) !important;
+            letter-spacing: 0.18em !important;
+          }
+          .hero-scroll-hint {
+            bottom: 1.2rem !important;
+            z-index: 10 !important;
+          }
+          .hero-scroll-hint span {
+            font-size: 1.4rem !important;
+          }
+          .hero-right-line {
+            right: 0.7rem !important;
+            top: 10% !important;
+            bottom: 6% !important;
           }
         }
       `}</style>
