@@ -410,12 +410,12 @@ export default function Hero() {
             padding-bottom: 0 !important;
           }
           .hero-bg-word {
-            font-size: clamp(6.8rem, 28vw, 11.5rem) !important;
-            top: 28% !important;
+            font-size: clamp(8.8rem, 40vw, 12.5rem) !important;
+            top: 48% !important;
             left: 50% !important;
             transform: translate(-50%, -50%) !important;
-            opacity: 0.75 !important;
-            background: linear-gradient(180deg, #ff2222 0%, #cc1111 50%, #990000 85%, #440000 100%) !important;
+            opacity: 0.30 !important;
+            background: linear-gradient(180deg, #ff1111 0%, #ee1111 60%, #cc0000 100%) !important;
             -webkit-background-clip: text !important;
             background-clip: text !important;
             letter-spacing: 0.05em !important;
@@ -426,7 +426,7 @@ export default function Hero() {
             transform: translateX(-50%) !important;
             top: 8% !important;
             bottom: auto !important;
-            height: 56vh !important;
+            height: 60vh !important;
             width: 100% !important;
             max-width: 480px !important;
             margin: 0 !important;
@@ -435,12 +435,13 @@ export default function Hero() {
           .hero-portrait img {
             mask-image: linear-gradient(to bottom, black 65%, transparent 100%) !important;
             -webkit-mask-image: linear-gradient(to bottom, black 65%, transparent 100%) !important;
-            transform: scale(1) !important;
+              transform: scale(1.3) translateY(-10px) !important; 
+              transform-origin: top center !important;
           }
           .hero-content {
             position: absolute !important;
             left: 0 !important;
-            bottom: 4rem !important;
+            bottom: 17.5rem !important;
             top: auto !important;
             padding-left: 1.25rem !important;
             padding-right: 0.5rem !important;
@@ -470,13 +471,14 @@ export default function Hero() {
             color: rgba(230,230,230,0.85) !important;
           }
           .hero-resume-container {
-            position: absolute !important;
-            right: 1.2rem !important;
-            bottom: 10rem !important;
+            position: absolute;
+            top: 30% !important;
+            left: 1.2rem !important;
+            bottom: 14rem !important;
             top: auto !important;
-            margin: 0 !important;
-            text-align: right !important;
-            z-index: 15 !important;
+            margin: 2px !important;
+            text-align: left !important;
+            z-index: 40 !important;
           }
           .hero-resume-btn {
             font-size: clamp(0.95rem, 3.2vw, 1.2rem) !important;
